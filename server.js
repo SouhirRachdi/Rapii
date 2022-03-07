@@ -65,9 +65,9 @@ mongoose.connect(process.env.MONGO_URI).then (() => {
   })
 
 //REMOVE A USER BY ID
-  app.delete('/delete',async(req,res)=>{
+  app.delete('/delete/:id',async(req,res)=>{
     try{
-      const deleteUser= await User.findByIdAndRemove("622211177591eb69111333d2")
+      const deleteUser= await User.findByIdAndRemove({_id:req.params.id})
       res.send({deleteUser})
     }
     catch(err){
